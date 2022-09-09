@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish -c Publish
+      run: dotnet publish -c Publish --output ./Release
 
     - name: Kill Current Running
       uses: garygrossgarten/github-action-ssh@v0.6.4
@@ -33,4 +33,18 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
-    
+    - name: Copy new Release folder into Server
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: ./Release
+        remote: ${{ secrets.REMOTE_TARGET }}
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+    - name: Start the Server
+      uses: garygrossgarten/github-action-ssh@v0.6.4
+      with:
+        command: dotnet /var/www/dotnetwebapi/asp-api.dll
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
