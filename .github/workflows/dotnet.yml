@@ -27,9 +27,9 @@ jobs:
       run: dotnet publish -c Publish
 
     - name: ssh deploy
-      uses: easingthemes/ssh-deploy@v2.2.11
+      uses: garygrossgarten/github-action-ssh@v0.6.3
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.REMOTE_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
     
