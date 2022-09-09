@@ -26,9 +26,10 @@ jobs:
     - name: Publish
       run: dotnet publish -c Publish
 
-    - name: ssh deploy
-      uses: garygrossgarten/github-action-ssh@v0.6.3
+    - name: Kill Current Running
+      uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
+        command: sudo fuser -k 5000/tcp
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
