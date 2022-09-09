@@ -33,14 +33,16 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+        
     - name: Copy new Release folder into Server
       uses: garygrossgarten/github-action-scp@release
       with:
         local: ./Release
-        remote: ${{ secrets.REMOTE_TARGET }}
+        remote: /Desktop
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+        
     - name: Start the Server
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
