@@ -25,12 +25,11 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish
       run: dotnet publish -c Publish
-    - name: Test SSH
-      uses: garygrossgarten/github-action-ssh@v0.6.3
+
+    - name: ssh deploy
+      uses: easingthemes/ssh-deploy@v2.2.11
       with:
-        command: sudo fuser -k 5000/tcp
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        passphrase: ${{ secrets.PASSPHRASE }}
-        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
-      
+        SSH_PRIVATE_KEY: ${{ secrets.REMOTE_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+    
