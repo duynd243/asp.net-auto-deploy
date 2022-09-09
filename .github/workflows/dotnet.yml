@@ -29,7 +29,7 @@ jobs:
     - name: Kill Current Running
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: sudo fuser -k 5000/tcp
+        command: sudo pm2 stop dotnetwebapi
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
@@ -46,7 +46,7 @@ jobs:
     - name: Start the Server
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: /usr/local/lib/dotnet-64/dotnet ./Desktop/demo-net-api.dll
+        command: sudo pm2 start dotnetwebapi
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
