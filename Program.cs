@@ -16,6 +16,10 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 
+app.MapGet("/", () => "Hello World!");
+
+
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

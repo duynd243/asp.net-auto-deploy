@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "gWch9D4bDg4Kmq2mjGAcf4mKrXjih/kEY8T+Abyqqiw=",
+  "Source": "demo-net-api",
+  "BasePath": "_content/demo-net-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
