@@ -29,7 +29,7 @@ jobs:
     - name: Kill Current Running
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: sudo systemctl start test
+        command: sudo systemctl stop test
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.REMOTE_PASSWORD }}
@@ -47,7 +47,7 @@ jobs:
     - name: Start the Server
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: sudo systemctl stop test
+        command: sudo systemctl start test
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.REMOTE_PASSWORD }}
