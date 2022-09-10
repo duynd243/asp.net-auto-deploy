@@ -26,13 +26,12 @@ jobs:
     - name: Publish
       run: dotnet publish -c Publish --output ./Release
 
-    - name: Kill Current Running
+    - name: Stop Running Service
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
         command: sudo systemctl stop test
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.REMOTE_PASSWORD }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
         
     - name: Copy new Release folder into Server
@@ -40,15 +39,16 @@ jobs:
       with:
         local: ./Release
         remote: /var/www/dotnetwebapi
+        # This remote directory should be set for full read/write permission
+        # sudo chmod 777 /path/to/directory
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
         
-    - name: Start the Server
+    - name: Start the Server and Log the Result
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: sudo systemctl start test
+        command: sudo systemctl start test && sudo systemctl status test
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.REMOTE_PASSWORD }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
