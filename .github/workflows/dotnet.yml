@@ -29,7 +29,7 @@ jobs:
     - name: Stop Running Service
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: sudo systemctl stop test
+        command: sudo systemctl stop book-fair-api
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
@@ -38,7 +38,7 @@ jobs:
       uses: garygrossgarten/github-action-scp@release
       with:
         local: ./Release
-        remote: /var/www/dotnetwebapi
+        remote: /var/www/book-fair-api
         # This remote directory should be set for full read/write permission
         # sudo chmod 777 /path/to/directory
         host: ${{ secrets.REMOTE_HOST }}
@@ -48,7 +48,7 @@ jobs:
     - name: Start the Server and Log the Result
       uses: garygrossgarten/github-action-ssh@v0.6.4
       with:
-        command: sudo systemctl start test && sudo systemctl status test
+        command: sudo systemctl start book-fair-api && sudo systemctl status book-fair-api
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
