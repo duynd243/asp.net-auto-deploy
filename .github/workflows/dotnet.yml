@@ -27,28 +27,28 @@ jobs:
       run: dotnet publish -c Publish --output ./Release
 
     - name: Stop Running Service
-      uses: garygrossgarten/github-action-ssh@v0.6.4
+      uses: appleboy/ssh-action@master
       with:
-        command: sudo systemctl stop book-fair-api
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+        key: ${{ secrets.REMOTE_SSH_KEY }}
+        script: sudo systemctl stop book-fair-api
         
     - name: Copy new Release folder into Server
-      uses: garygrossgarten/github-action-scp@release
+      uses: easingthemes/ssh-deploy@main
       with:
-        local: ./Release
+        SOURCE: ./Release
         remote: /var/www/book-fair-api
         # This remote directory should be set for full read/write permission
         # sudo chmod 777 /path/to/directory
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        SSH_PRIVATE_KEY: ${{ secrets.REMOTE_SSH_KEY }}
         
     - name: Start the Server and Log the Result
-      uses: garygrossgarten/github-action-ssh@v0.6.4
+      uses: appleboy/ssh-action@master
       with:
-        command: sudo systemctl start book-fair-api && sudo systemctl status book-fair-api
+        script: sudo systemctl start book-fair-api && sudo systemctl status book-fair-api
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+        key: ${{ secrets.REMOTE_SSH_KEY }}
