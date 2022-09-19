@@ -38,7 +38,7 @@ jobs:
       uses: easingthemes/ssh-deploy@main
       with:
         SOURCE: "Release"
-        remote: "/var/www/book-fair-api"
+        TARGET: "/var/www/book-fair-api"
         # This remote directory should be set for full read/write permission
         # sudo chmod 777 /path/to/directory
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
