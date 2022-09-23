@@ -1,0 +1,11 @@
+C:\Users\Duy\Desktop\demo-net-api\Release\demo-net-api.exe
+C:\Users\Duy\Desktop\demo-net-api\Release\appsettings.Development.json
+C:\Users\Duy\Desktop\demo-net-api\Release\appsettings.json
+C:\Users\Duy\Desktop\demo-net-api\Release\demo-net-api.dll
+C:\Users\Duy\Desktop\demo-net-api\Release\demo-net-api.deps.json
+C:\Users\Duy\Desktop\demo-net-api\Release\demo-net-api.runtimeconfig.json
+C:\Users\Duy\Desktop\demo-net-api\Release\demo-net-api.pdb
+C:\Users\Duy\Desktop\demo-net-api\Release\Microsoft.OpenApi.dll
+C:\Users\Duy\Desktop\demo-net-api\Release\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Duy\Desktop\demo-net-api\Release\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Duy\Desktop\demo-net-api\Release\Swashbuckle.AspNetCore.SwaggerUI.dll

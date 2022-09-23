@@ -18,7 +18,10 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.MapGet("/", () => "Hello ?!");
 
-
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseSwagger();
 app.UseSwaggerUI();
