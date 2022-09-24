@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(o =>
 {
-    o.AddDefaultPolicy(builder =>
+    o.AddPolicy("AllowAll",builder =>
     {
         builder
             .AllowAnyOrigin()
@@ -28,7 +28,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.MapGet("/", () => "Hello ?!");
 
-app.UseCors();
+app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI();
