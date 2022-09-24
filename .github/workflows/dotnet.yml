@@ -37,7 +37,7 @@ jobs:
     - name: Copy new Release folder into Server
       uses: easingthemes/ssh-deploy@main
       with:
-        SOURCE: "Release"
+        SOURCE: "Release/*"
         TARGET: "/var/www/book-fair-api"
         # This remote directory should be set for full read/write permission
         # sudo chmod 777 /path/to/directory
